@@ -12,9 +12,7 @@ export const useTrainingStore = defineStore('training', () => {
     }),
   )
 
-  const selectedDate = ref(
-    new Date().toISOString().split('T')[0], // format YYYY-MM-DD
-  )
+  const selectedDate = ref(new Date().toISOString().split('T')[0])
 
   const setSelectedDate = (dateStr) => {
     selectedDate.value = dateStr
@@ -27,16 +25,38 @@ export const useTrainingStore = defineStore('training', () => {
 
   const addExercise = (exercise) => {
     const newId = exercises.value.length ? Math.max(...exercises.value.map((e) => e.id)) + 1 : 1
-    exercises.value.push({ id: newId, ...exercise })
+
+    exercises.value.push({
+      id: newId,
+      ...exercise,
+      completed: false,
+      actualWeight: null,
+    })
   }
 
   const removeExercise = (id) => {
     exercises.value = exercises.value.filter((e) => e.id !== id)
   }
 
+  const completeExercise = (id, weightUsed) => {
+    const exercise = exercises.value.find((e) => e.id === id)
+    if (exercise) {
+      exercise.actualWeight = weightUsed
+      exercise.completed = true
+    }
+  }
+
+  const toggleCompleted = (id) => {
+    console.log('Toggling', id)
+    const exercise = exercises.value.find((e) => e.id === id)
+    if (exercise) {
+      exercise.completed = !exercise.completed
+    }
+  }
+
   const getWeekday = computed(() => {
     const date = parseISO(selectedDate.value)
-    return format(date, 'eeee', { locale: fr }) // ex: "lundi"
+    return format(date, 'eeee', { locale: fr })
   })
 
   const filteredExercises = computed(() => {
@@ -51,10 +71,10 @@ export const useTrainingStore = defineStore('training', () => {
     { deep: true },
   )
 
-  const toggleCompleted = (id) => {
+  const updateWeight = (id, weightUsed) => {
     const exercise = exercises.value.find((e) => e.id === id)
     if (exercise) {
-      exercise.completed = !exercise.completed
+      exercise.actualWeight = weightUsed
     }
   }
 
@@ -65,8 +85,10 @@ export const useTrainingStore = defineStore('training', () => {
     exercises,
     addExercise,
     removeExercise,
+    completeExercise,
+    toggleCompleted,
+    updateWeight,
     filteredExercises,
     getWeekday,
-    toggleCompleted,
   }
 })

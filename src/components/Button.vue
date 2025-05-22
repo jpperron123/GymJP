@@ -7,7 +7,7 @@
     variant === 'danger' && 'bg-red-600 text-white hover:bg-red-700',
     disabled && 'opacity-50 cursor-not-allowed',
     customClass
-  ]" :disabled="disabled" @click="$emit('click')">
+  ]" :disabled="disabled">
     <slot />
   </button>
 </template>
@@ -20,7 +20,7 @@ defineProps({
   },
   disabled: {
     type: Boolean,
-    default: false,
+    default: false
   },
   customClass: {
     type: String,
