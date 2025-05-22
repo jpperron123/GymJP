@@ -1,53 +1,63 @@
 <template>
-  <!-- Header -->
-  <header class="w-full bg-red-500 text-white py-6 shadow-md">
-    <h1 class="text-center text-2xl sm:text-3xl font-extrabold tracking-wide">
-      Programme d'entraînement
-    </h1>
-  </header>
+  <div class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="w-full bg-red-500 text-white py-6 shadow-md">
+      <h1 class="text-center text-2xl sm:text-3xl font-extrabold tracking-wide">
+        Programme d'entraînement
+      </h1>
+    </header>
 
-  <!-- Sélecteur de jours -->
-  <div class="flex flex-wrap justify-center gap-2 mt-6 px-4">
-    <div v-for="date in weekDates" :key="date.key" @click="trainingStore.setSelectedDate(date.fullDate)"
-      class="cursor-pointer px-4 py-2 rounded-full border transition-all duration-200 text-sm sm:text-base" :class="trainingStore.selectedDate === date.fullDate
-        ? 'bg-red-700 text-white border-red-700 shadow-md'
-        : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'">
-      {{ date.label }}
-    </div>
-  </div>
-
-  <!-- Liste des exercices -->
-  <div class="max-w-4xl mx-auto space-y-4 px-4 mt-6">
-    <ExerciseCard v-for="exercise in trainingStore.filteredExercises" :key="exercise.id" :exercise="exercise" />
-  </div>
-
-  <!-- Bouton Ajouter -->
-  <div class="flex justify-center mt-10 px-4">
-    <Button class="cursor-pointer" @click="showModal = true">
-      + Ajouter un exercice
-    </Button>
-  </div>
-
-  <!-- Modal -->
-  <div v-if="showModal"
-    class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 px-4">
-    <div class="bg-white p-6 rounded-2xl w-full max-w-md shadow-xl border border-red-700">
-      <h2 class="text-2xl font-bold mb-4 text-red-700">Nouvel exercice</h2>
-
-      <label class="block mb-2 text-sm text-gray-700">Nom de l'exercice :</label>
-      <input v-model="newExerciseName" type="text"
-        class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-red-400"
-        placeholder="Ex: Rowing haltère" />
-
-      <div class="flex flex-wrap justify-end gap-2">
-        <Button variant="secondary" class="cursor-pointer" @click="showModal = false">
-          Annuler
-        </Button>
-        <Button variant="success" class="cursor-pointer" @click="saveExercise" :disabled="!newExerciseName.trim()">
-          Sauvegarder
-        </Button>
+    <!-- Sélecteur de jours -->
+    <div class="flex flex-wrap justify-center gap-2 mt-6 px-4">
+      <div v-for="date in weekDates" :key="date.key" @click="trainingStore.setSelectedDate(date.fullDate)"
+        class="cursor-pointer px-4 py-2 rounded-full border transition-all duration-200 text-sm sm:text-base" :class="trainingStore.selectedDate === date.fullDate
+          ? 'bg-red-700 text-white border-red-700 shadow-md'
+          : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'">
+        {{ date.label }}
       </div>
     </div>
+
+    <!-- Liste des exercices -->
+    <div class="max-w-4xl mx-auto space-y-4 px-4 mt-6">
+      <ExerciseCard v-for="exercise in trainingStore.filteredExercises" :key="exercise.id" :exercise="exercise" />
+    </div>
+
+    <!-- Bouton Ajouter -->
+    <div class="flex justify-center mt-10 mb-10 px-4">
+      <Button class="cursor-pointer" @click="showModal = true">
+        + Ajouter un exercice
+      </Button>
+    </div>
+
+    <!-- Modal -->
+    <div v-if="showModal"
+      class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 px-4">
+      <div class="bg-white p-6 rounded-2xl w-full max-w-md shadow-xl border border-red-700">
+        <h2 class="text-2xl font-bold mb-4 text-red-700">Nouvel exercice</h2>
+
+        <label class="block mb-2 text-sm text-gray-700">Nom de l'exercice :</label>
+        <input v-model="newExerciseName" type="text"
+          class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-red-400"
+          placeholder="Ex: Rowing haltère" />
+
+        <div class="flex flex-wrap justify-end gap-2">
+          <Button variant="secondary" class="cursor-pointer" @click="showModal = false">
+            Annuler
+          </Button>
+          <Button variant="success" class="cursor-pointer" @click="saveExercise" :disabled="!newExerciseName.trim()">
+            Sauvegarder
+          </Button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="w-full bg-gray-100 border-t py-4 text-center text-sm text-gray-600 mt-auto">
+      © 2025 – Créé par
+      <a href="https://github.com/Verdungo" target="_blank" rel="noopener"
+        class="text-red-600 hover:underline font-medium">
+        @Verdungo
+      </a>
+    </footer>
   </div>
 </template>
 
