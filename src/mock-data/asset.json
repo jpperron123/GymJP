@@ -6,11 +6,16 @@
   },
   {
     "id": "asset-002",
+    "name": "inclinebenchpress1.png",
+    "url": "/src/assets/exercice/inclinebenchpress1.png"
+  },
+  {
+    "id": "asset-00",
     "name": "squat1.png",
     "url": "/src/assets/exercice/squat1.png"
   },
   {
-    "id": "asset-003",
+    "id": "asset-00",
     "name": "deadlift1.png",
     "url": "/src/assets/exercice/deadlift1.png"
   }
