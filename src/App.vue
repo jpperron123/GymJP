@@ -59,7 +59,7 @@
             <select v-model="selectedExerciseId"
               class="w-full appearance-none px-3 py-2 pr-10 border border-gray-300 rounded-xl shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-red-400 transition">
               <option disabled value="">-- Choisir un exercice --</option>
-              <option v-for="ex in trainingStore.allExercises" :key="ex.id" :value="ex.id">
+              <option v-for="ex in sortedExercises" :key="ex.id" :value="ex.id">
                 {{ ex.name }}
               </option>
             </select>
@@ -127,6 +127,12 @@ import ExerciseCard from './components/ExerciseCard.vue'
 import Button from './components/Button.vue'
 
 const trainingStore = useTrainingStore()
+
+const sortedExercises = computed(() => {
+  return [...trainingStore.allExercises].sort((a, b) =>
+    a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' })
+  )
+})
 
 const showModal = ref(false)
 const selectedExerciseId = ref('')

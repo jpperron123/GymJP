@@ -1,17 +1,429 @@
 [
   {
     "id": "ex-001",
-    "name": "Bench Press",
+    "name": "Développé couché",
+    "group": "Pectoraux",
+    "type": "polyarticulaire",
     "asset_id": "asset-001"
   },
   {
     "id": "ex-002",
-    "name": "Squat",
+    "name": "Développé incliné",
+    "group": "Pectoraux",
+    "type": "polyarticulaire",
     "asset_id": "asset-002"
   },
   {
     "id": "ex-003",
-    "name": "Deadlift",
+    "name": "Développé décliné",
+    "group": "Pectoraux",
+    "type": "polyarticulaire",
     "asset_id": "asset-003"
+  },
+  {
+    "id": "ex-004",
+    "name": "Écarté couché",
+    "group": "Pectoraux",
+    "type": "isolation",
+    "asset_id": "asset-004"
+  },
+  {
+    "id": "ex-005",
+    "name": "Dips pour pectoraux",
+    "group": "Pectoraux",
+    "type": "polyarticulaire",
+    "asset_id": "asset-005"
+  },
+  {
+    "id": "ex-006",
+    "name": "Pompes",
+    "group": "Pectoraux",
+    "type": "polyarticulaire",
+    "asset_id": "asset-006"
+  },
+  {
+    "id": "ex-007",
+    "name": "Pullover",
+    "group": "Pectoraux",
+    "type": "isolation",
+    "asset_id": "asset-007"
+  },
+  {
+    "id": "ex-008",
+    "name": "Pec-deck",
+    "group": "Pectoraux",
+    "type": "isolation",
+    "asset_id": "asset-008"
+  },
+  {
+    "id": "ex-009",
+    "name": "Tractions",
+    "group": "Dos",
+    "type": "polyarticulaire",
+    "asset_id": "asset-009"
+  },
+  {
+    "id": "ex-010",
+    "name": "Rowing barre",
+    "group": "Dos",
+    "type": "polyarticulaire",
+    "asset_id": "asset-010"
+  },
+  {
+    "id": "ex-011",
+    "name": "Rowing unilatéral",
+    "group": "Dos",
+    "type": "polyarticulaire",
+    "asset_id": "asset-011"
+  },
+  {
+    "id": "ex-012",
+    "name": "Tirage vertical",
+    "group": "Dos",
+    "type": "polyarticulaire",
+    "asset_id": "asset-012"
+  },
+  {
+    "id": "ex-013",
+    "name": "Tirage horizontal",
+    "group": "Dos",
+    "type": "polyarticulaire",
+    "asset_id": "asset-013"
+  },
+  {
+    "id": "ex-014",
+    "name": "Soulevé de terre",
+    "group": "Dos",
+    "type": "polyarticulaire",
+    "asset_id": "asset-014"
+  },
+  {
+    "id": "ex-015",
+    "name": "Shrugs",
+    "group": "Dos",
+    "type": "isolation",
+    "asset_id": "asset-015"
+  },
+  {
+    "id": "ex-016",
+    "name": "Extension lombaire",
+    "group": "Dos",
+    "type": "isolation",
+    "asset_id": "asset-016"
+  },
+  {
+    "id": "ex-017",
+    "name": "Développé militaire",
+    "group": "Épaules",
+    "type": "polyarticulaire",
+    "asset_id": "asset-017"
+  },
+  {
+    "id": "ex-018",
+    "name": "Élévations latérales",
+    "group": "Épaules",
+    "type": "isolation",
+    "asset_id": "asset-018"
+  },
+  {
+    "id": "ex-019",
+    "name": "Élévations frontales",
+    "group": "Épaules",
+    "type": "isolation",
+    "asset_id": "asset-019"
+  },
+  {
+    "id": "ex-020",
+    "name": "Oiseau",
+    "group": "Épaules",
+    "type": "isolation",
+    "asset_id": "asset-020"
+  },
+  {
+    "id": "ex-021",
+    "name": "Tirage menton",
+    "group": "Épaules",
+    "type": "polyarticulaire",
+    "asset_id": "asset-021"
+  },
+  {
+    "id": "ex-022",
+    "name": "Arnold press",
+    "group": "Épaules",
+    "type": "polyarticulaire",
+    "asset_id": "asset-022"
+  },
+  {
+    "id": "ex-023",
+    "name": "Curl barre",
+    "group": "Biceps",
+    "type": "isolation",
+    "asset_id": "asset-023"
+  },
+  {
+    "id": "ex-024",
+    "name": "Curl haltère",
+    "group": "Biceps",
+    "type": "isolation",
+    "asset_id": "asset-024"
+  },
+  {
+    "id": "ex-025",
+    "name": "Curl incliné",
+    "group": "Biceps",
+    "type": "isolation",
+    "asset_id": "asset-025"
+  },
+  {
+    "id": "ex-026",
+    "name": "Curl marteau",
+    "group": "Biceps",
+    "type": "isolation",
+    "asset_id": "asset-026"
+  },
+  {
+    "id": "ex-027",
+    "name": "Curl concentration",
+    "group": "Biceps",
+    "type": "isolation",
+    "asset_id": "asset-027"
+  },
+  {
+    "id": "ex-028",
+    "name": "Extension nuque",
+    "group": "Triceps",
+    "type": "isolation",
+    "asset_id": "asset-028"
+  },
+  {
+    "id": "ex-029",
+    "name": "Barre au front",
+    "group": "Triceps",
+    "type": "isolation",
+    "asset_id": "asset-029"
+  },
+  {
+    "id": "ex-030",
+    "name": "Dips pour triceps",
+    "group": "Triceps",
+    "type": "polyarticulaire",
+    "asset_id": "asset-030"
+  },
+  {
+    "id": "ex-031",
+    "name": "Kickback",
+    "group": "Triceps",
+    "type": "isolation",
+    "asset_id": "asset-031"
+  },
+  {
+    "id": "ex-032",
+    "name": "Extension poulie haute",
+    "group": "Triceps",
+    "type": "isolation",
+    "asset_id": "asset-032"
+  },
+  {
+    "id": "ex-033",
+    "name": "Squat",
+    "group": "Jambes",
+    "type": "polyarticulaire",
+    "asset_id": "asset-033"
+  },
+  {
+    "id": "ex-034",
+    "name": "Presse à cuisses",
+    "group": "Jambes",
+    "type": "polyarticulaire",
+    "asset_id": "asset-034"
+  },
+  {
+    "id": "ex-035",
+    "name": "Fentes",
+    "group": "Jambes",
+    "type": "polyarticulaire",
+    "asset_id": "asset-035"
+  },
+  {
+    "id": "ex-036",
+    "name": "Soulevé de terre jambes tendues",
+    "group": "Jambes",
+    "type": "isolation",
+    "asset_id": "asset-036"
+  },
+  {
+    "id": "ex-037",
+    "name": "Leg extension",
+    "group": "Jambes",
+    "type": "isolation",
+    "asset_id": "asset-037"
+  },
+  {
+    "id": "ex-038",
+    "name": "Leg curl",
+    "group": "Jambes",
+    "type": "isolation",
+    "asset_id": "asset-038"
+  },
+  {
+    "id": "ex-039",
+    "name": "Hack squat",
+    "group": "Jambes",
+    "type": "polyarticulaire",
+    "asset_id": "asset-039"
+  },
+  {
+    "id": "ex-040",
+    "name": "Step-up",
+    "group": "Jambes",
+    "type": "polyarticulaire",
+    "asset_id": "asset-040"
+  },
+  {
+    "id": "ex-041",
+    "name": "Mollets debout",
+    "group": "Mollets",
+    "type": "isolation",
+    "asset_id": "asset-041"
+  },
+  {
+    "id": "ex-042",
+    "name": "Mollets assis",
+    "group": "Mollets",
+    "type": "isolation",
+    "asset_id": "asset-042"
+  },
+  {
+    "id": "ex-043",
+    "name": "Mollets à la presse",
+    "group": "Mollets",
+    "type": "isolation",
+    "asset_id": "asset-043"
+  },
+  {
+    "id": "ex-044",
+    "name": "Crunch",
+    "group": "Abdominaux",
+    "type": "isolation",
+    "asset_id": "asset-044"
+  },
+  {
+    "id": "ex-045",
+    "name": "Relevé de jambes",
+    "group": "Abdominaux",
+    "type": "isolation",
+    "asset_id": "asset-045"
+  },
+  {
+    "id": "ex-046",
+    "name": "Planche",
+    "group": "Abdominaux",
+    "type": "gainage",
+    "asset_id": "asset-046"
+  },
+  {
+    "id": "ex-047",
+    "name": "Russian twist",
+    "group": "Abdominaux",
+    "type": "isolation",
+    "asset_id": "asset-047"
+  },
+  {
+    "id": "ex-048",
+    "name": "Sit-up",
+    "group": "Abdominaux",
+    "type": "isolation",
+    "asset_id": "asset-048"
+  },
+  {
+    "id": "ex-049",
+    "name": "Mountain climbers",
+    "group": "Abdominaux",
+    "type": "cardio",
+    "asset_id": "asset-049"
+  },
+  {
+    "id": "ex-050",
+    "name": "Flexion des poignets",
+    "group": "Avant-bras",
+    "type": "isolation",
+    "asset_id": "asset-050"
+  },
+  {
+    "id": "ex-051",
+    "name": "Extension des poignets",
+    "group": "Avant-bras",
+    "type": "isolation",
+    "asset_id": "asset-051"
+  },
+  {
+    "id": "ex-052",
+    "name": "Rouleau à poignets",
+    "group": "Avant-bras",
+    "type": "isolation",
+    "asset_id": "asset-052"
+  },
+  {
+    "id": "ex-053",
+    "name": "Farmer's walk",
+    "group": "Avant-bras",
+    "type": "fonctionnel",
+    "asset_id": "asset-053"
+  },
+  {
+    "id": "ex-054",
+    "name": "Burpees",
+    "group": "Cardio",
+    "type": "cardio",
+    "asset_id": "asset-054"
+  },
+  {
+    "id": "ex-055",
+    "name": "Jumping jacks",
+    "group": "Cardio",
+    "type": "cardio",
+    "asset_id": "asset-055"
+  },
+  {
+    "id": "ex-056",
+    "name": "Box jumps",
+    "group": "Cardio",
+    "type": "cardio",
+    "asset_id": "asset-056"
+  },
+  {
+    "id": "ex-057",
+    "name": "Kettlebell swings",
+    "group": "Cardio",
+    "type": "fonctionnel",
+    "asset_id": "asset-057"
+  },
+  {
+    "id": "ex-058",
+    "name": "Battle ropes",
+    "group": "Cardio",
+    "type": "fonctionnel",
+    "asset_id": "asset-058"
+  },
+  {
+    "id": "ex-059",
+    "name": "Sauts à la corde",
+    "group": "Cardio",
+    "type": "cardio",
+    "asset_id": "asset-059"
+  },
+  {
+    "id": "ex-060",
+    "name": "Sprints",
+    "group": "Cardio",
+    "type": "cardio",
+    "asset_id": "asset-060"
+  },
+  {
+    "id": "ex-061",
+    "name": "Rameur",
+    "group": "Cardio",
+    "type": "cardio",
+    "asset_id": "asset-061"
   }
 ]
