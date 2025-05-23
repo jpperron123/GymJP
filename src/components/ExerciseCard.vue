@@ -31,9 +31,9 @@
 
         <!-- Actions -->
         <div class="flex flex-col gap-2 sm:items-end items-start">
-          <Button :variant="exercise.completed ? 'secondary' : 'success'" :disabled="false"
+          <Button :variant="exercise.completed ? 'success' : 'secondary'" :disabled="false"
             @click="trainingStore.toggleCompleted(exercise.id)" class="cursor-pointer w-full sm:w-auto">
-            {{ exercise.completed ? 'Non complété' : 'Complété ✅' }}
+            {{ exercise.completed ? 'Complété ✅' : 'Non complété' }}
           </Button>
 
           <Button variant="danger" @click="trainingStore.removeExercise(exercise.id)"

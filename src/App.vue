@@ -1,10 +1,9 @@
 <template>
   <div class="min-h-screen flex flex-col">
     <!-- Header -->
-    <header class="w-full bg-red-500 text-white py-6 shadow-md">
-      <h1 class="text-center text-2xl sm:text-3xl font-extrabold tracking-wide">
-        Programme d'entraînement
-      </h1>
+    <header class="w-full bg-red-500 text-white py-4 shadow-md flex items-center justify-center gap-4">
+      <img src="@/assets/logo.png" alt="Mascotte Gym JP" class="w-20 h-auto" />
+      <h1 class="text-3xl font-extrabold tracking-wide">Programme d'entraînement</h1>
     </header>
 
     <!-- Sélecteur de jours -->
