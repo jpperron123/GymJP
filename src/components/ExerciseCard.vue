@@ -4,7 +4,7 @@
     <!-- Image -->
     <div class="w-full sm:w-1/5 flex-shrink-0 mb-4 sm:mb-0">
       <div class="w-full h-28 sm:h-24 rounded-lg bg-gray-200 flex items-center justify-center text-gray-400 text-sm">
-        Image
+        <img :src="resolveAsset(exercise.asset_id)" alt="Exercise image" />
       </div>
     </div>
 
@@ -51,6 +51,8 @@ import { ref, watch } from 'vue'
 import { useTrainingStore } from '@/stores/trainingStore'
 import Button from './Button.vue'
 
+import assets from '@/mock-data/asset.json'
+
 const props = defineProps({
   exercise: {
     type: Object,
@@ -72,4 +74,10 @@ watch(
 const saveWeight = () => {
   trainingStore.updateWeight(props.exercise.id, enteredWeight.value)
 }
+
+function resolveAsset(assetId) {
+  const asset = assets.find(a => a.id === assetId)
+  return asset ? new URL(asset.url, import.meta.url).href : ''
+}
+
 </script>

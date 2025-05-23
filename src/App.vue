@@ -18,7 +18,10 @@
 
     <!-- Liste des exercices -->
     <div class="max-w-4xl mx-auto space-y-4 px-4 mt-6">
-      <ExerciseCard v-for="exercise in trainingStore.filteredExercises" :key="exercise.id" :exercise="exercise" />
+      <ExerciseCard
+        v-for="log in trainingStore.setlogs.filter(l => l.workout_id === `wk-${trainingStore.selectedDate}`)"
+        :key="log.id" :exercise="trainingStore.allExercises.find(e => e.id === log.exercise_id)" :reps="log.reps"
+        :weight="log.weight" />
     </div>
 
     <!-- Bouton Ajouter -->
@@ -33,16 +36,19 @@
       <div class="bg-white p-6 rounded-2xl w-full max-w-md shadow-xl border border-red-700">
         <h2 class="text-2xl font-bold mb-4 text-red-700">Nouvel exercice</h2>
 
-        <label class="block mb-2 text-sm text-gray-700">Nom de l'exercice :</label>
-        <input v-model="newExerciseName" type="text"
-          class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-red-400"
-          placeholder="Ex: Rowing haltère" />
+        <label class="block mb-2 text-sm text-gray-700">Choisir un exercice :</label>
+        <select v-model="selectedExerciseId" class="w-full p-2 border border-gray-300 rounded mb-4">
+          <option disabled value="">-- Choisir un exercice --</option>
+          <option v-for="ex in trainingStore.allExercises" :key="ex.id" :value="ex.id">
+            {{ ex.name }}
+          </option>
+        </select>
 
         <div class="flex flex-wrap justify-end gap-2">
           <Button variant="secondary" class="cursor-pointer" @click="showModal = false">
             Annuler
           </Button>
-          <Button variant="success" class="cursor-pointer" @click="saveExercise" :disabled="!newExerciseName.trim()">
+          <Button variant="success" class="cursor-pointer" @click="saveExercise" :disabled="!selectedExerciseId">
             Sauvegarder
           </Button>
         </div>
@@ -70,7 +76,7 @@ import Button from './components/Button.vue'
 
 const trainingStore = useTrainingStore()
 const showModal = ref(false)
-const newExerciseName = ref('')
+const selectedExerciseId = ref('') // <- nouvelle ref
 
 const weekDates = computed(() => {
   const start = startOfWeek(new Date(), { weekStartsOn: 1 })
@@ -85,18 +91,16 @@ const weekDates = computed(() => {
 })
 
 const saveExercise = () => {
-  if (!newExerciseName.value.trim()) return
+  if (!selectedExerciseId.value) return
 
-  trainingStore.addExercise({
-    name: newExerciseName.value.trim(),
-    type: 'custom',
+  trainingStore.addSetLog({
+    exercise_id: selectedExerciseId.value,
+    reps: 10,
     weight: 0,
-    reps: 0,
-    sets: 0,
-    day: trainingStore.getWeekday
+    workout_date: trainingStore.selectedDate
   })
 
-  newExerciseName.value = ''
+  selectedExerciseId.value = ''
   showModal.value = false
 }
 </script>

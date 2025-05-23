@@ -1,0 +1,17 @@
+[
+  {
+    "id": "ex-001",
+    "name": "Bench Press",
+    "asset_id": "asset-001"
+  },
+  {
+    "id": "ex-002",
+    "name": "Squat",
+    "asset_id": "asset-002"
+  },
+  {
+    "id": "ex-003",
+    "name": "Deadlift",
+    "asset_id": "asset-003"
+  }
+]

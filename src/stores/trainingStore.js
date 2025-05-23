@@ -2,6 +2,9 @@ import { ref, watch, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { format, parseISO } from 'date-fns'
 import { fr } from 'date-fns/locale'
+import exerciseList from '@/mock-data/exercise.json'
+import workoutList from '@/mock-data/workout.json'
+import setLogList from '@/mock-data/setlog.json'
 
 export const useTrainingStore = defineStore('training', () => {
   const today = ref(
@@ -18,6 +21,39 @@ export const useTrainingStore = defineStore('training', () => {
     selectedDate.value = dateStr
   }
 
+  // Exercices disponibles (issus du JSON)
+  const allExercises = ref(exerciseList)
+
+  // Séances (workouts) et logs (setlogs)
+  const workouts = ref(workoutList)
+  const setlogs = ref(setLogList)
+
+  // Ajout d'un SetLog à une séance
+  const addSetLog = ({ exercise_id, reps, weight, workout_date }) => {
+    let workout = workouts.value.find((w) => w.date === workout_date)
+
+    // Créer la séance si elle n'existe pas
+    if (!workout) {
+      workout = {
+        id: `wk-${workout_date}`,
+        date: workout_date,
+      }
+      workouts.value.push(workout)
+    }
+
+    const newLog = {
+      id: `log-${crypto.randomUUID()}`,
+      exercise_id,
+      workout_id: workout.id,
+      reps,
+      weight,
+      order: setlogs.value.filter((l) => l.workout_id === workout.id).length + 1,
+    }
+
+    setlogs.value.push(newLog)
+  }
+
+  // Ancienne logique conservée si utile localement
   const defaultExercises = []
 
   const savedExercises = localStorage.getItem('exercises')
@@ -47,7 +83,6 @@ export const useTrainingStore = defineStore('training', () => {
   }
 
   const toggleCompleted = (id) => {
-    console.log('Toggling', id)
     const exercise = exercises.value.find((e) => e.id === id)
     if (exercise) {
       exercise.completed = !exercise.completed
@@ -90,5 +125,9 @@ export const useTrainingStore = defineStore('training', () => {
     updateWeight,
     filteredExercises,
     getWeekday,
+    allExercises,
+    workouts,
+    setlogs,
+    addSetLog,
   }
 })

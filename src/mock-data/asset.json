@@ -1,0 +1,17 @@
+[
+  {
+    "id": "asset-001",
+    "name": "benchpress1.png",
+    "url": "/src/assets/exercice/benchpress1.png"
+  },
+  {
+    "id": "asset-002",
+    "name": "squat1.png",
+    "url": "/src/assets/exercice/squat1.png"
+  },
+  {
+    "id": "asset-003",
+    "name": "deadlift1.png",
+    "url": "/src/assets/exercice/deadlift1.png"
+  }
+]
