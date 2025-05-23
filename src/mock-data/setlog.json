@@ -5,6 +5,8 @@
     "workout_id": "wk-2025-05-21",
     "reps": 10,
     "weight": 100,
+    "sets": 3,
+    "completed": false,
     "order": 1
   },
   {
@@ -13,6 +15,8 @@
     "workout_id": "wk-2025-05-21",
     "reps": 8,
     "weight": 120,
+    "sets": 3,
+    "completed": false,
     "order": 2
   },
   {
@@ -21,6 +25,8 @@
     "workout_id": "wk-2025-05-19",
     "reps": 5,
     "weight": 140,
+    "sets": 3,
+    "completed": false,
     "order": 1
   }
 ]

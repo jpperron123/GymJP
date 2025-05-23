@@ -1,6 +1,6 @@
 import { ref, watch, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { format, parseISO } from 'date-fns'
+import { format, parseISO, subWeeks } from 'date-fns'
 import { fr } from 'date-fns/locale'
 import exerciseList from '@/mock-data/exercise.json'
 import workoutList from '@/mock-data/workout.json'
@@ -29,10 +29,9 @@ export const useTrainingStore = defineStore('training', () => {
   const setlogs = ref(setLogList)
 
   // Ajout d'un SetLog à une séance
-  const addSetLog = ({ exercise_id, reps, weight, workout_date }) => {
+  const addSetLog = ({ exercise_id, reps, sets, weight, workout_date }) => {
     let workout = workouts.value.find((w) => w.date === workout_date)
 
-    // Créer la séance si elle n'existe pas
     if (!workout) {
       workout = {
         id: `wk-${workout_date}`,
@@ -46,7 +45,9 @@ export const useTrainingStore = defineStore('training', () => {
       exercise_id,
       workout_id: workout.id,
       reps,
+      sets,
       weight,
+      completed: false,
       order: setlogs.value.filter((l) => l.workout_id === workout.id).length + 1,
     }
 
@@ -113,6 +114,47 @@ export const useTrainingStore = defineStore('training', () => {
     }
   }
 
+  const copyPreviousWeekDayLog = (dayDate) => {
+    const currentDate = parseISO(dayDate)
+    const previousDate = subWeeks(currentDate, 1)
+    const prevWorkoutId = `wk-${format(previousDate, 'yyyy-MM-dd')}`
+    const currentWorkoutId = `wk-${format(currentDate, 'yyyy-MM-dd')}`
+
+    // ❌ Ne rien faire si la journée actuelle a déjà des logs
+    const existingLogs = setlogs.value.filter((l) => l.workout_id === currentWorkoutId)
+    if (existingLogs.length > 0) return
+
+    const prevLogs = setlogs.value.filter((l) => l.workout_id === prevWorkoutId)
+    if (!prevLogs.length) return
+
+    let workout = workouts.value.find((w) => w.id === currentWorkoutId)
+    if (!workout) {
+      workout = { id: currentWorkoutId, date: format(currentDate, 'yyyy-MM-dd') }
+      workouts.value.push(workout)
+    }
+
+    prevLogs.forEach((oldLog, index) => {
+      const suggestedWeight = oldLog.completed
+        ? roundToNearestFive(oldLog.weight * 1.05)
+        : oldLog.weight
+
+      setlogs.value.push({
+        id: `log-${crypto.randomUUID()}`,
+        workout_id: currentWorkoutId,
+        exercise_id: oldLog.exercise_id,
+        reps: oldLog.reps,
+        sets: oldLog.sets,
+        weight: suggestedWeight,
+        completed: false,
+        order: index + 1,
+      })
+    })
+  }
+
+  const roundToNearestFive = (num) => {
+    return Math.round(num / 5) * 5
+  }
+
   return {
     today,
     selectedDate,
@@ -129,5 +171,6 @@ export const useTrainingStore = defineStore('training', () => {
     workouts,
     setlogs,
     addSetLog,
+    copyPreviousWeekDayLog,
   }
 })
