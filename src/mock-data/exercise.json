@@ -502,5 +502,26 @@
     "group": "Dos",
     "type": "isolation",
     "asset_id": "asset-072"
+  },
+  {
+    "id": "ex-073",
+    "name": "Flat Dumbbell Bench Press",
+    "group": "Pectoraux",
+    "type": "isolation",
+    "asset_id": "asset-073"
+  },
+  {
+    "id": "ex-074",
+    "name": "Romanian Deadlifts",
+    "group": "Jambes",
+    "type": "polyarticulaire",
+    "asset_id": "asset-074"
+  },
+  {
+    "id": "ex-075",
+    "name": "Bulgarian Split Squats",
+    "group": "Jambes",
+    "type": "polyarticulaire",
+    "asset_id": "asset-075"
   }
 ]

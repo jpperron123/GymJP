@@ -144,7 +144,7 @@ const hasExercisesToday = computed(() => {
 const isCopying = ref(false)
 
 // ✅ Nouvelle semaine dynamique
-const currentWeekStart = ref(startOfWeek(new Date(), { weekStartsOn: 1 }))
+const currentWeekStart = ref(startOfWeek(new Date(), { weekStartsOn: 0 }))
 
 const goToPreviousWeek = () => {
   currentWeekStart.value = subWeeks(currentWeekStart.value, 1)
