@@ -2,17 +2,8 @@ import { ref, watch, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { format, parseISO, subWeeks } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import { Capacitor } from '@capacitor/core'
+import { Preferences } from '@capacitor/preferences'
 import exerciseList from '@/mock-data/exercise.json'
-
-let Storage = null
-
-async function setupStorage() {
-  if (Capacitor.isNativePlatform()) {
-    const storageModule = await import('@capacitor/storage')
-    Storage = storageModule.Storage
-  }
-}
 
 export const useTrainingStore = defineStore('training', () => {
   const today = ref(
@@ -36,51 +27,43 @@ export const useTrainingStore = defineStore('training', () => {
 
   const loadData = async () => {
     try {
-      await setupStorage()
-      if (!Storage) {
-        isReady.value = true
-        return
-      }
-
-      const ex = await Storage.get({ key: 'exercises' })
-      const logs = await Storage.get({ key: 'setlogs' })
-      const wks = await Storage.get({ key: 'workouts' })
+      const ex = await Preferences.get({ key: 'exercises' })
+      const logs = await Preferences.get({ key: 'setlogs' })
+      const wks = await Preferences.get({ key: 'workouts' })
 
       exercises.value = ex.value ? JSON.parse(ex.value) : []
       setlogs.value = logs.value ? JSON.parse(logs.value) : []
       workouts.value = wks.value ? JSON.parse(wks.value) : []
     } catch (err) {
-      console.error('Erreur de chargement Capacitor Storage', err)
+      console.error('Erreur de chargement Capacitor Preferences', err)
     } finally {
       isReady.value = true
     }
   }
 
-  if (Storage) {
-    watch(
-      exercises,
-      (val) => {
-        Storage.set({ key: 'exercises', value: JSON.stringify(val) })
-      },
-      { deep: true },
-    )
+  watch(
+    exercises,
+    (val) => {
+      Preferences.set({ key: 'exercises', value: JSON.stringify(val) })
+    },
+    { deep: true },
+  )
 
-    watch(
-      setlogs,
-      (val) => {
-        Storage.set({ key: 'setlogs', value: JSON.stringify(val) })
-      },
-      { deep: true },
-    )
+  watch(
+    setlogs,
+    (val) => {
+      Preferences.set({ key: 'setlogs', value: JSON.stringify(val) })
+    },
+    { deep: true },
+  )
 
-    watch(
-      workouts,
-      (val) => {
-        Storage.set({ key: 'workouts', value: JSON.stringify(val) })
-      },
-      { deep: true },
-    )
-  }
+  watch(
+    workouts,
+    (val) => {
+      Preferences.set({ key: 'workouts', value: JSON.stringify(val) })
+    },
+    { deep: true },
+  )
 
   const addExercise = (exercise) => {
     const newId = exercises.value.length ? Math.max(...exercises.value.map((e) => e.id)) + 1 : 1
