@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div v-if="trainingStore.isReady" class="min-h-screen flex flex-col">
     <!-- Header -->
     <header class="w-full bg-red-500 text-white shadow-md flex items-center justify-center gap-4">
       <img src="@/assets/logo.png" alt="Mascotte Gym JP" class="w-20 h-auto" />
@@ -108,10 +108,13 @@
       </a>
     </footer>
   </div>
+  <div v-else class="h-screen flex items-center justify-center">
+    <p class="text-gray-500">Chargement...</p>
+  </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useTrainingStore } from '@/stores/trainingStore'
 import {
   startOfWeek,
@@ -127,6 +130,10 @@ import ExerciseCard from './components/ExerciseCard.vue'
 import Button from './components/Button.vue'
 
 const trainingStore = useTrainingStore()
+
+onMounted(() => {
+  trainingStore.loadData()
+})
 
 const sortedExercises = computed(() => {
   return [...trainingStore.allExercises].sort((a, b) =>

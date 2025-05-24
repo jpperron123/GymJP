@@ -2,9 +2,17 @@ import { ref, watch, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { format, parseISO, subWeeks } from 'date-fns'
 import { fr } from 'date-fns/locale'
+import { Capacitor } from '@capacitor/core'
 import exerciseList from '@/mock-data/exercise.json'
-import workoutList from '@/mock-data/workout.json'
-import setLogList from '@/mock-data/setlog.json'
+
+let Storage = null
+
+async function setupStorage() {
+  if (Capacitor.isNativePlatform()) {
+    const storageModule = await import('@capacitor/storage')
+    Storage = storageModule.Storage
+  }
+}
 
 export const useTrainingStore = defineStore('training', () => {
   const today = ref(
@@ -16,53 +24,66 @@ export const useTrainingStore = defineStore('training', () => {
   )
 
   const selectedDate = ref(new Date().toISOString().split('T')[0])
-
   const setSelectedDate = (dateStr) => {
     selectedDate.value = dateStr
   }
 
-  // Exercices disponibles (issus du JSON)
   const allExercises = ref(exerciseList)
+  const exercises = ref([])
+  const workouts = ref([])
+  const setlogs = ref([])
+  const isReady = ref(false)
 
-  // Séances (workouts) et logs (setlogs)
-  const workouts = ref(workoutList)
-  const setlogs = ref(setLogList)
-
-  // Ajout d'un SetLog à une séance
-  const addSetLog = ({ exercise_id, reps, sets, weight, workout_date }) => {
-    let workout = workouts.value.find((w) => w.date === workout_date)
-
-    if (!workout) {
-      workout = {
-        id: `wk-${workout_date}`,
-        date: workout_date,
+  const loadData = async () => {
+    try {
+      await setupStorage()
+      if (!Storage) {
+        isReady.value = true
+        return
       }
-      workouts.value.push(workout)
-    }
 
-    const newLog = {
-      id: `log-${crypto.randomUUID()}`,
-      exercise_id,
-      workout_id: workout.id,
-      reps,
-      sets,
-      weight,
-      completed: false,
-      order: setlogs.value.filter((l) => l.workout_id === workout.id).length + 1,
-    }
+      const ex = await Storage.get({ key: 'exercises' })
+      const logs = await Storage.get({ key: 'setlogs' })
+      const wks = await Storage.get({ key: 'workouts' })
 
-    setlogs.value.push(newLog)
+      exercises.value = ex.value ? JSON.parse(ex.value) : []
+      setlogs.value = logs.value ? JSON.parse(logs.value) : []
+      workouts.value = wks.value ? JSON.parse(wks.value) : []
+    } catch (err) {
+      console.error('Erreur de chargement Capacitor Storage', err)
+    } finally {
+      isReady.value = true
+    }
   }
 
-  // Ancienne logique conservée si utile localement
-  const defaultExercises = []
+  if (Storage) {
+    watch(
+      exercises,
+      (val) => {
+        Storage.set({ key: 'exercises', value: JSON.stringify(val) })
+      },
+      { deep: true },
+    )
 
-  const savedExercises = localStorage.getItem('exercises')
-  const exercises = ref(savedExercises ? JSON.parse(savedExercises) : defaultExercises)
+    watch(
+      setlogs,
+      (val) => {
+        Storage.set({ key: 'setlogs', value: JSON.stringify(val) })
+      },
+      { deep: true },
+    )
+
+    watch(
+      workouts,
+      (val) => {
+        Storage.set({ key: 'workouts', value: JSON.stringify(val) })
+      },
+      { deep: true },
+    )
+  }
 
   const addExercise = (exercise) => {
     const newId = exercises.value.length ? Math.max(...exercises.value.map((e) => e.id)) + 1 : 1
-
     exercises.value.push({
       id: newId,
       ...exercise,
@@ -90,6 +111,38 @@ export const useTrainingStore = defineStore('training', () => {
     }
   }
 
+  const updateWeight = (id, weightUsed) => {
+    const exercise = exercises.value.find((e) => e.id === id)
+    if (exercise) {
+      exercise.actualWeight = weightUsed
+    }
+  }
+
+  const addSetLog = ({ exercise_id, reps, sets, weight, workout_date }) => {
+    let workout = workouts.value.find((w) => w.date === workout_date)
+
+    if (!workout) {
+      workout = {
+        id: `wk-${workout_date}`,
+        date: workout_date,
+      }
+      workouts.value.push(workout)
+    }
+
+    const newLog = {
+      id: `log-${crypto.randomUUID()}`,
+      exercise_id,
+      workout_id: workout.id,
+      reps,
+      sets,
+      weight,
+      completed: false,
+      order: setlogs.value.filter((l) => l.workout_id === workout.id).length + 1,
+    }
+
+    setlogs.value.push(newLog)
+  }
+
   const getWeekday = computed(() => {
     const date = parseISO(selectedDate.value)
     return format(date, 'eeee', { locale: fr })
@@ -99,28 +152,12 @@ export const useTrainingStore = defineStore('training', () => {
     return exercises.value.filter((e) => e.day === getWeekday.value.toLowerCase())
   })
 
-  watch(
-    exercises,
-    (newValue) => {
-      localStorage.setItem('exercises', JSON.stringify(newValue))
-    },
-    { deep: true },
-  )
-
-  const updateWeight = (id, weightUsed) => {
-    const exercise = exercises.value.find((e) => e.id === id)
-    if (exercise) {
-      exercise.actualWeight = weightUsed
-    }
-  }
-
   const copyPreviousWeekDayLog = (dayDate) => {
     const currentDate = parseISO(dayDate)
     const previousDate = subWeeks(currentDate, 1)
     const prevWorkoutId = `wk-${format(previousDate, 'yyyy-MM-dd')}`
     const currentWorkoutId = `wk-${format(currentDate, 'yyyy-MM-dd')}`
 
-    // ❌ Ne rien faire si la journée actuelle a déjà des logs
     const existingLogs = setlogs.value.filter((l) => l.workout_id === currentWorkoutId)
     if (existingLogs.length > 0) return
 
@@ -172,5 +209,7 @@ export const useTrainingStore = defineStore('training', () => {
     setlogs,
     addSetLog,
     copyPreviousWeekDayLog,
+    isReady,
+    loadData,
   }
 })

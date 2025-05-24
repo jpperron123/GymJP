@@ -74,7 +74,7 @@ const displaySets = computed(() => props.sets ?? props.exercise.sets ?? '?')
 
 const resolveAsset = (assetId) => {
   const asset = assets.find(a => a.id === assetId)
-  return asset ? new URL(asset.url, import.meta.url).href : ''
+  return asset ? new URL(`../assets/exercice/${asset.url}`, import.meta.url).href : ''
 }
 
 const toggleCompleted = () => {

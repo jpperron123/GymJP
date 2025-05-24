@@ -2,136 +2,136 @@
   {
     "id": "asset-001",
     "name": "benchpress1.png",
-    "url": "/src/assets/exercice/benchpress1.png"
+    "url": "benchpress1.png"
   },
   {
     "id": "asset-002",
     "name": "inclinebenchpress1.png",
-    "url": "/src/assets/exercice/inclinebenchpress1.png"
+    "url": "inclinebenchpress1.png"
   },
   {
     "id": "asset-006",
     "name": "pushup1.png",
-    "url": "/src/assets/exercice/pushup1.png"
+    "url": "pushup1.png"
   },
   {
     "id": "asset-009",
     "name": "pullups1.png",
-    "url": "/src/assets/exercice/pullups1.png"
+    "url": "pullups1.png"
   },
   {
     "id": "asset-012",
     "name": "latpulldown1.png",
-    "url": "/src/assets/exercice/latpulldown1.png"
+    "url": "latpulldown1.png"
   },
   {
     "id": "asset-014",
     "name": "deadlift1.png",
-    "url": "/src/assets/exercice/deadlift1.png"
+    "url": "deadlift1.png"
   },
   {
     "id": "asset-016",
     "name": "backextension1.png",
-    "url": "/src/assets/exercice/backextension1.png"
+    "url": "backextension1.png"
   },
   {
     "id": "asset-018",
     "name": "lateralraises1.png",
-    "url": "/src/assets/exercice/lateralraises1.png"
+    "url": "lateralraises1.png"
   },
   {
     "id": "asset-022",
     "name": "arnoldpress1.png",
-    "url": "/src/assets/exercice/arnoldpress1.png"
+    "url": "arnoldpress1.png"
   },
   {
     "id": "asset-026",
     "name": "hammercurl1.png",
-    "url": "/src/assets/exercice/hammercurl1.png"
+    "url": "hammercurl1.png"
   },
   {
     "id": "asset-030",
     "name": "tricepsdips1.png",
-    "url": "/src/assets/exercice/tricepsdips1.png"
+    "url": "tricepsdips1.png"
   },
   {
     "id": "asset-033",
     "name": "squat1.png",
-    "url": "/src/assets/exercice/squat1.png"
+    "url": "squat1.png"
   },
   {
     "id": "asset-034",
     "name": "legpress1.png",
-    "url": "/src/assets/exercice/legpress1.png"
+    "url": "legpress1.png"
   },
   {
     "id": "asset-041",
     "name": "standingcalfraises1.png",
-    "url": "/src/assets/exercice/standingcalfraises1.png"
+    "url": "standingcalfraises1.png"
   },
   {
     "id": "asset-062",
     "name": "seateddumbbellshoulderpress1.png",
-    "url": "/src/assets/exercice/seateddumbbellshoulderpress1.png"
+    "url": "seateddumbbellshoulderpress1.png"
   },
   {
     "id": "asset-063",
     "name": "barbellshrugs1.png",
-    "url": "/src/assets/exercice/barbellshrugs1.png"
+    "url": "barbellshrugs1.png"
   },
   {
     "id": "asset-064",
     "name": "facepulls1.png",
-    "url": "/src/assets/exercice/facepulls1.png"
+    "url": "facepulls1.png"
   },
   {
     "id": "asset-065",
     "name": "closegripbenchpress1.png",
-    "url": "/src/assets/exercice/closegripbenchpress1.png"
+    "url": "closegripbenchpress1.png"
   },
   {
     "id": "asset-066",
     "name": "standingbarbellcurl1.png",
-    "url": "/src/assets/exercice/standingbarbellcurl1.png"
+    "url": "standingbarbellcurl1.png"
   },
   {
     "id": "asset-067",
     "name": "tricepropepushdowns1.png",
-    "url": "/src/assets/exercice/tricepropepushdowns1.png"
+    "url": "tricepropepushdowns1.png"
   },
   {
     "id": "asset-069",
     "name": "machinechestpress1.png",
-    "url": "/src/assets/exercice/machinechestpress1.png"
+    "url": "machinechestpress1.png"
   },
   {
     "id": "asset-070",
     "name": "cableflys1.png",
-    "url": "/src/assets/exercice/cableflys1.png"
+    "url": "cableflys1.png"
   },
   {
     "id": "asset-071",
     "name": "tbarrow1.png",
-    "url": "/src/assets/exercice/tbarrow1.png"
+    "url": "tbarrow1.png"
   },
   {
     "id": "asset-072",
     "name": "seatedcablerow1.png",
-    "url": "/src/assets/exercice/seatedcablerow1.png"
+    "url": "seatedcablerow1.png"
   },
   {
     "id": "asset-073",
     "name": "flatdumbbellbenchpress1.png",
-    "url": "/src/assets/exercice/flatdumbbellbenchpress1.png"
+    "url": "flatdumbbellbenchpress1.png"
   },
   {
     "id": "asset-074",
     "name": "romaniandeadlifts1.png",
-    "url": "/src/assets/exercice/romaniandeadlifts1.png"
+    "url": "romaniandeadlifts1.png"
   },
   {
     "id": "asset-075",
     "name": "bulgariansplitsquats1.png",
-    "url": "/src/assets/exercice/bulgariansplitsquats1.png"
+    "url": "bulgariansplitsquats1.png"
   }
 ]

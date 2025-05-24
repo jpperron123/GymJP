@@ -11,6 +11,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@capacitor/android": "^7.2.0",
+    "@capacitor/cli": "^6.2.1",
+    "@capacitor/core": "^7.2.0",
     "@tailwindcss/vite": "^4.1.7",
     "date-fns": "^4.1.0",
     "pinia": "^3.0.1",
