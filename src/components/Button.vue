@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <button :class="[
     'cursor-pointer inline-flex items-center justify-center px-4 py-2 rounded-full font-semibold transition',
