@@ -1,9 +1,7 @@
 <template>
   <div class="w-full max-w-lg bg-white shadow-xl rounded-2xl p-8 border border-gray-200">
-    <div class="flex items-center gap-3 mb-6">
-      <div class="h-12 w-12 flex items-center justify-center rounded-full bg-red-100 text-red-700 font-bold text-xl">
-        JP
-      </div>
+    <div class="flex flex-col items-center gap-3 mb-6 text-center">
+      <img src="@/assets/logo.png" alt="Logo Gym JP" class="w-20 h-auto" />
       <div>
         <h1 class="text-2xl font-bold text-gray-900">Connexion</h1>
         <p class="text-gray-600">Connectez-vous pour suivre vos entraînements en cours.</p>
