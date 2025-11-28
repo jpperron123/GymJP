@@ -11,6 +11,8 @@
       </div>
     </div>
 
+    
+
     <!-- Infos + actions -->
     <div class="flex-1 sm:ml-4 w-full">
       <div class="flex flex-col sm:flex-row justify-between sm:items-center w-full gap-4">
