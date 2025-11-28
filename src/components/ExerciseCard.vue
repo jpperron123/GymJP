@@ -71,7 +71,6 @@ const trainingStore = useTrainingStore()
 const hasCompletion = computed(() => props.completed !== undefined)
 
 const displayReps = computed(() => props.reps ?? props.exercise.reps ?? '?')
-const displayWeight = computed(() => props.weight ?? props.exercise.weight ?? '?')
 const displaySets = computed(() => props.sets ?? props.exercise.sets ?? '?')
 
 const resolveAsset = (assetId) => {
